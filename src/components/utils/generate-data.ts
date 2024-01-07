@@ -27,13 +27,13 @@ export const generateData = () => {
       pos: [coord.lng, coord.lat],
       monthly_income: Number(
         faker.finance.amount({
-          min: 100,
-          max: 100000,
+          min: 10,
+          max: 10000,
         })
       ),
       monthly_debt: Number(
         faker.finance.amount({
-          max: 100000,
+          max: 10000,
         })
       ),
       monthly_expenses: Number(faker.finance.amount()),
