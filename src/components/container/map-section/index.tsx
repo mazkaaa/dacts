@@ -54,9 +54,9 @@ const MapSection = (props: MapDeckProps) => {
   const INITIAL_VIEW_STATE = {
     longitude: -0.198465,
     latitude: 51.505538,
-    zoom: 9.6,
+    zoom: 6.6,
     maxZoom: 16,
-    pitch: 0,
+    pitch: 40.5,
     bearing: 0,
   };
 
