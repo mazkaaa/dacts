@@ -48,7 +48,7 @@ const MapSection = (props: MapDeckProps) => {
     radius: 1000,
     elevationScale: 100,
     getPosition: (d: HouseholdDataType) => d.pos,
-    colorRange: colorRange as any,
+    // colorRange: colorRange as any,
     elevationAggregation: "SUM",
     onClick: (e) => {
       const object: ObjectHexagonType = e.object;
@@ -57,6 +57,7 @@ const MapSection = (props: MapDeckProps) => {
       }
       return true;
     },
+    opacity: 0.1
   });
 
   // const layers = [
