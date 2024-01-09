@@ -1,14 +1,17 @@
 import React from "react";
 
 type OverviewDataProps = {
-  overviewTitle: string
+  overviewTitle: string;
   data: {
-    title: string
-    value: string
-    desc?: string
-  }[]
-  onClose?: () => void
-}
+    title: string;
+    value: string;
+    desc?: string;
+  }[];
+  onClose?: () => void;
+  onAddToCart?: () => void;
+  onRemoveFromCart?: () => void;
+  isExistInCart?: boolean;
+};
 const OverviewData = (props: OverviewDataProps) => {
   return (
     <section className="absolute right-3 top-3 z-50 rounded-lg bg-base-300 drop-shadow-lg">
@@ -33,9 +36,15 @@ const OverviewData = (props: OverviewDataProps) => {
             </div>
           ))}
         </div>
-        <button className="btn btn-outline btn-success">
-          Add to cart
-        </button>
+        {props.onAddToCart ? (
+          !props.isExistInCart ? (
+            <button onClick={() => props.onAddToCart ? props.onAddToCart() : null} className="btn btn-outline btn-success">Add to cart</button>
+          ) : (
+            <button onClick={() => props.onRemoveFromCart ? props.onRemoveFromCart() : null} className="btn btn-outline btn-error">
+              Remove from cart
+            </button>
+          )
+        ) : null}
       </div>
     </section>
   );

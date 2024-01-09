@@ -57,7 +57,7 @@ const MapSection = (props: MapDeckProps) => {
       }
       return true;
     },
-    opacity: 0.1
+    opacity: 0.1,
   });
 
   // const layers = [

@@ -5,6 +5,16 @@ import { currencyFormat } from "@/components/utils/currency-format";
 import { HouseholdDataType } from "@/components/utils/generate-data";
 import { useEffect, useMemo, useState } from "react";
 
+type CartType = {
+  region_name: string;
+  monthly_income: number;
+  monthly_savings: number;
+  monthly_expenses: number;
+  monthly_debt: number;
+  position: [number, number];
+  index: number;
+  colorValue: number;
+}
 export default function Home() {
   const [selectedLayer, setSelectedLayer] = useState<
     {
@@ -23,6 +33,8 @@ export default function Home() {
 
   const [geocodeResult, setGeocodeResult] = useState<any[]>([]);
 
+  const [carts, setCarts] = useState<CartType[]>([]);
+
   const getGeocodingAddress = async (lng: number, lat: number) => {
     const res = await fetch(
       "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
@@ -39,7 +51,6 @@ export default function Home() {
       type: string
     } = await res.json()
     setGeocodeResult(result.features)
-    
   }
 
   return (
@@ -53,6 +64,9 @@ export default function Home() {
       />
       {selectedLayer && geocodeResult.length > 0 ? (
         <OverviewData
+        onAddToCart={() => {
+          
+        }}
           overviewTitle={geocodeResult.find(
             (item) =>
               item.place_type[0] === "poi" || item.place_type[0] === "address",
