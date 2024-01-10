@@ -11,9 +11,10 @@ import {
 } from "@/components/utils/generate-data";
 
 import "mapbox-gl/dist/mapbox-gl.css";
+import { CartType } from "@/components/types/cart-type";
 
 type MapDeckProps = {
-  onSelectedLayer?: (event: any) => void
+  onSelectedLayer?: (event: CartType) => void
 };
 type ObjectHexagonType = {
   colorValue: number;
@@ -51,9 +52,31 @@ const MapSection = (props: MapDeckProps) => {
     // colorRange: colorRange as any,
     elevationAggregation: "SUM",
     onClick: (e) => {
+      console.log(e)
       const object: ObjectHexagonType = e.object;
       if (props.onSelectedLayer) {
-        props.onSelectedLayer(object);
+        props.onSelectedLayer({
+          colorValue: object.colorValue,
+          index: object.index,
+          monthly_debt: object.points.reduce(
+            (total, item) => total + item.source.monthly_debt,
+            0,
+          ),
+          monthly_expenses: object.points.reduce(
+            (total, item) => total + item.source.monthly_expenses,
+            0,
+          ),
+          monthly_income: object.points.reduce(
+            (total, item) => total + item.source.monthly_income,
+            0,
+          ),
+          monthly_savings: object.points.reduce(
+            (total, item) => total + item.source.monthly_savings,
+            0,
+          ),
+          position: object.position,
+          region_name: ""
+        });
       }
       return true;
     },
